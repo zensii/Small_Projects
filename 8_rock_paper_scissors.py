@@ -1,6 +1,6 @@
 import random
 
-options = ['Rock', 'Paper', 'Scissor']
+options = ['[R]ock', '[P]aper', '[S]cissor']
 
 player = input('Player Name: ')
 
