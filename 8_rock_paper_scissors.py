@@ -44,6 +44,3 @@ while True:
         else:
             print(f'{player_pick} beats {computer_pick}, {player} wins')
             continue
-
-
-asdasdasdasd
