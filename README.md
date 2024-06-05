@@ -16,4 +16,8 @@ check your vocabulary exercise program( with your own dict)
 add words, select translation direction and practice
 Can be a collection program for small games or exercises in one
 
+website Dari
+website Gancho
+
+home secuity system with arduino/raspberrypi( also has to be like an instruction on how to do it)
 
