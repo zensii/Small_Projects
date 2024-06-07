@@ -143,7 +143,7 @@ def handle_reverse(lst):
 
     print(f'Reversing the list...')
 
-    return lst
+    return lst.reverse()
 
 
 def handle_copy(lst):
@@ -196,3 +196,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
