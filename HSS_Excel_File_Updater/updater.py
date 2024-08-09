@@ -32,7 +32,7 @@ for filename in os.listdir(script_dir):
 
 
     try:
-        if not filename.endswith('.py'):
+        if not filename.endswith('.exe'):
             df_main = pd.read_excel(f'{file_path}', sheet_name='raw date per vendor')  # locate the main data_frame
             print('Opening main file in Excel. Please wait...')
             main_file = xw.Book(file_path)  # start excel
@@ -111,5 +111,6 @@ print('Saving...')
 main_file.save(f'(UPDATED){main_file.name}')  # save the excel file
 print('All DONE!')
 print('Quitting...')
+input()
 app = xw.apps.active  # To quit Excel if needed
 app.quit()
