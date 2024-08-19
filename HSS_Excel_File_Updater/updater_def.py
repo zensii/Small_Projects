@@ -2,8 +2,8 @@ import pandas as pd
 import xlwings as xw
 from time import sleep
 import numpy as np
-import os
 import sys
+import FreeSimpleGUI as sg
 
 
 def check_for_updated(filename):
@@ -165,8 +165,6 @@ def update(data):
     sleep(10)  # wait for the Excel to update formulas
 
 
-import FreeSimpleGUI as sg
-
 label_save = sg.Text("Select save location", expand_x=True)
 input_box_save = sg.InputText(tooltip='Select the output file save location.')
 add_button_save = sg.Button('Confirm')
@@ -178,9 +176,11 @@ add_button_new = sg.Button('Confirm')
 save_location = sg.FolderBrowse('Open', key='_save_location_')
 open_explorer_new = sg.FilesBrowse('Open', key='_open_files_')
 button_go = sg.Button('Execute', size=(10, 2))
+
 window = sg.Window('Excel Updater', layout=[[label_new, input_box_new, open_explorer_new, ],
                                             [label_save, input_box_save, save_location],
-                                            [sg.Text("Press 'Confirm' to confirm selection"), sg.Push(), add_button_new],
+                                            [sg.Text("Press 'Confirm' to confirm selection"), sg.Push(),
+                                             add_button_new],
                                             [sg.Output(size=(50, 5), key='_output_', expand_x=True)],
                                             [sg.Text('')],
                                             [button_go, sg.Push(), sg.Button('Exit', size=(10, 2))],
@@ -247,4 +247,3 @@ while True:
                 exit()
             else:
                 print("First select the files to work with and press 'Confirm'!")
-
