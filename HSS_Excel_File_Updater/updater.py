@@ -4,7 +4,7 @@ from time import sleep
 import numpy as np
 import os
 import sys
-
+import FreeSimpleGUI
 
 # Determine the directory where the script or executable is located
 if getattr(sys, 'frozen', False):
@@ -16,8 +16,6 @@ else:
 
 
 dataframes = {}
-# folder_path = 'C:\\Users\\svetl\\Desktop\\test\\test\\data'
-# folder_path = os.getcwd()
 counter = 1
 
 for filename in os.listdir(script_dir):
@@ -30,12 +28,11 @@ for filename in os.listdir(script_dir):
         input()
         sys.exit()
 
-
     try:
         if not filename.endswith('.exe'):
-            df_main = pd.read_excel(f'{file_path}', sheet_name='raw date per vendor')  # locate the main data_frame
+            df_main = pd.read_excel(f'{file_path}', sheet_name='raw date per vendor')  # locate the main data_frame file
             print('Opening main file in Excel. Please wait...')
-            main_file = xw.Book(file_path)  # start excel
+            main_file = xw.Book(file_path)  # start excel using xlwings
             sleep(20)  # waiting for Excel to open
     except ValueError:  # fill a dict with dataframes from the files in the folder
         print('Additional file located. Opening... ')
@@ -44,6 +41,7 @@ for filename in os.listdir(script_dir):
         counter += 1
     except FileNotFoundError:
         print(f'{filename} not found!')
+
 
 if dataframes:
     pass
