@@ -4,7 +4,6 @@ from time import sleep
 import numpy as np
 import os
 import sys
-import FreeSimpleGUI
 
 # Determine the directory where the script or executable is located
 if getattr(sys, 'frozen', False):
@@ -29,10 +28,10 @@ for filename in os.listdir(script_dir):
         sys.exit()
 
     try:
-        if not filename.endswith('.exe'):
+        if not filename.endswith('.py'): # change to .exe when packing
             df_main = pd.read_excel(f'{file_path}', sheet_name='raw date per vendor')  # locate the main data_frame file
             print('Opening main file in Excel. Please wait...')
-            main_file = xw.Book(file_path)  # start excel using xlwings
+            main_file = xw.Book(file_path)  # start Excel using xlwings
             sleep(20)  # waiting for Excel to open
     except ValueError:  # fill a dict with dataframes from the files in the folder
         print('Additional file located. Opening... ')
@@ -84,15 +83,15 @@ pivot['Period'] = file_period
 print('Normalizing file formats...')
 # Defining the columns to update the main file with
 vendors = pivot['Vendor'].apply(
-    lambda x: f"'{x}")  # adding ' in front of the numbers to be interpreted as text (needed for main excel file logic)
+    lambda x: f"'{x}")  # adding ' in front of the numbers to be interpreted as text (needed for main Excel file logic)
 g_l = pivot['G/L Account'].apply(
-    lambda x: f"'{x}")  # adding ' in front of the numbers to be interpreted as text (needed for main excel file logic)
+    lambda x: f"'{x}")  # adding ' in front of the numbers to be interpreted as text (needed for main Excel file logic)
 name = pivot['Name 1']
 amount = pivot['Amount in Local Currency']
 year = pivot['Year']
 period = pivot['Period']
 
-# save the data to be added as list in order to paste it in the excel file in one shot
+# save the data to be added as list in order to paste it in the Excel file in one shot
 data = []
 print('Preparing data package...')
 for g, v, n, a, y, p in zip(g_l.values, vendors.values, name.values, amount.values, year.values, period.values):
@@ -103,10 +102,10 @@ sheet = main_file.sheets['raw date per vendor']
 
 start_row = len(df_main.iloc[:, 0]) + 2  # find the first empty row
 print('Updating main file. Please wait...')
-sheet.range(f'B{start_row}').value = data  # write data to excel file
-sleep(10)  # wait for the excel to update formulas
+sheet.range(f'B{start_row}').value = data  # write data to Excel file
+sleep(10)  # wait for the Excel to update formulas
 print('Saving...')
-main_file.save(f'(UPDATED){main_file.name}')  # save the excel file
+main_file.save(f'(UPDATED){main_file.name}')  # save the Excel file
 print('All DONE!')
 print('Quitting...')
 input()
