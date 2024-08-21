@@ -73,6 +73,12 @@ def get_df(file_paths):
         except FileNotFoundError:
             print(f'{filename} not found!')
 
+        except:
+            print('There is a problem with the files.')
+            sleep(2)
+            sys.exit()
+
+
     return dataframes, df_main, main_file
 
 
