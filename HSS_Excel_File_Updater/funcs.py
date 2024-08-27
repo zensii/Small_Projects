@@ -80,11 +80,12 @@ def get_df(file_paths):
             print('Additional file located. Opening... ')
             key = f'df_to_add{counter}'
 
-            try:
+            try:  #
                 # when reading, define the data type per column
                 dataframes[key] = pd.read_excel(file_path, sheet_name='Sheet1', converters={'GL': str, 'Vendor': str})
                 counter += 1
             except :
+                print(f'File: {filename} is not valid!')
                 continue
 
         except FileNotFoundError:
