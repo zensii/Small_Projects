@@ -24,12 +24,11 @@ def check_for_df(dataframes):
 
 
 def get_df(file_paths):
-    """Function to scan the active dir and extract the needed dataframes for each of the Excel files"""
+    """Function to scan the selected dir and extract the needed dataframes for each of the Excel files"""
     dataframes = {}
     df_main = None
     main_file = None
     main_file_open = False
-    main = None
     counter = 1
 
     for file_path in file_paths:
@@ -50,7 +49,7 @@ def get_df(file_paths):
                         for book in open_excels.books:
                             if book.name == filename:
                                 main_file_open = True
-                                main = book
+                                main_file = book
                                 break
 
                     if not main_file_open:
@@ -61,7 +60,6 @@ def get_df(file_paths):
                     else:
                         # if main Excel file is open:
                         print('Main file already open - connecting...')
-                        main_file = main.books[filename]
                         sleep(2)
 
         except ValueError:  # fill a dict with dataframes from the files in the folder
@@ -77,7 +75,6 @@ def get_df(file_paths):
             print('There is a problem with the files.')
             sleep(2)
             sys.exit()
-
 
     return dataframes, df_main, main_file
 
@@ -117,9 +114,9 @@ def create_sub_pivots(dataframes):
     sleep(1)
     # creating a list with the pivot tables of all files to be added in the folder
     for key, df in dataframes.items():
-        pv_tables = [pd.pivot_table(df, values=['Amount in Loc.Crcy 2', 'Amount in Local Currency'],
+        pv_tables.append(pd.pivot_table(df, values=['Amount in Loc.Crcy 2', 'Amount in Local Currency'],
                                     index=['Company Code', 'G/L Account', 'Vendor', 'Name 1'],
-                                    aggfunc='sum').reset_index()]
+                                    aggfunc='sum').reset_index())
     return pv_tables
 
 

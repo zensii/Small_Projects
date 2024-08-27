@@ -61,10 +61,10 @@ while True:
                 cols = ['Company Code', 'G/L Account', 'Vendor', 'Name 1']
 
                 dataframes, df_main, main_file = get_df(file_paths)
+                file_year, file_period = get_period(dataframes)
                 clean_data(dataframes, cols)
                 check_for_df(dataframes)
                 pv_tables = create_sub_pivots(dataframes)
-                file_year, file_period = get_period(dataframes)
                 pivot = create_main_pivot(pv_tables, file_year, file_period)
                 data = prep_update_package(pivot)
                 sheet = get_main_sheet(main_file)
