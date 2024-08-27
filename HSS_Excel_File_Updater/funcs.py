@@ -1,3 +1,5 @@
+import time
+
 import pandas as pd
 import xlwings as xw
 from time import sleep
@@ -56,7 +58,19 @@ def get_df(file_paths):
                         # If the workbook is not open, open it
                         print('Opening main file in Excel. Please wait...')
                         main_file = xw.Book(file_path)  # start excel using xlwings
-                        sleep(20)  # waiting for Excel to open
+
+                        start_time = time.time()
+                        timeout = 30
+                        while time.time() - start_time < timeout:
+                            try:
+                                # Try to access a property that requires the workbook to be fully loaded
+                                _ = main_file.sheets[0].used_range
+                                print( f'File {filename} loaded successfully')
+                                break
+                            except Exception:
+                                # If an exception occurs, the book isn't fully loaded yet
+                                time.sleep(0.5)  # Short sleep to prevent excessive CPU usage
+
                     else:
                         # if main Excel file is open:
                         print('Main file already open - connecting...')
@@ -65,9 +79,14 @@ def get_df(file_paths):
         except ValueError:  # fill a dict with dataframes from the files in the folder
             print('Additional file located. Opening... ')
             key = f'df_to_add{counter}'
-            # when reading, define the data type per column
-            dataframes[key] = pd.read_excel(file_path, sheet_name='Sheet1', converters={'GL': str, 'Vendor': str})
-            counter += 1
+
+            try:
+                # when reading, define the data type per column
+                dataframes[key] = pd.read_excel(file_path, sheet_name='Sheet1', converters={'GL': str, 'Vendor': str})
+                counter += 1
+            except :
+                continue
+
         except FileNotFoundError:
             print(f'{filename} not found!')
 
