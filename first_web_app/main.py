@@ -18,14 +18,20 @@ with col2:
 
 st.write('some text bellow the picture. Writing more text to see if it will exend past the width of a column. And it actually extended past the width')
 
-col3, col4 = st.columns(2)
+col3, empty_col,  col4 = st.columns([1.5, 0.5, 1.5])
 
 df = pandas.read_csv('data.csv', sep=';')
 
 with col3:
-    for index, row in df[:10].iterrows():
-        st.header(row['title'])
+    for index, col in df[:10].iterrows():
+        st.header(col['title'])
+        st.write(col['description'])
+        st.image('images/' + col['image'])
+        st.write(f"[Source code]({col['url']})")
 
 with col4:
-    for index, row in df[10:].iterrows():
-        st.header(row['title'])
+    for index, col in df[10:].iterrows():
+        st.header(col['title'])
+        st.write(col['description'])
+        st.image('images/' + col['image'])
+        st.write(f"[Source code]({col['url']})")
