@@ -1,4 +1,6 @@
 import streamlit as st
+import pandas
+
 
 st.set_page_config(layout='wide')
 
@@ -15,3 +17,15 @@ with col2:
     st.write(content)
 
 st.write('some text bellow the picture. Writing more text to see if it will exend past the width of a column. And it actually extended past the width')
+
+col3, col4 = st.columns(2)
+
+df = pandas.read_csv('data.csv', sep=';')
+
+with col3:
+    for index, row in df[:10].iterrows():
+        st.header(row['title'])
+
+with col4:
+    for index, row in df[10:].iterrows():
+        st.header(row['title'])
