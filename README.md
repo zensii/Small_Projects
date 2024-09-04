@@ -25,3 +25,5 @@ app for tourists
 
 phone app for storing passwords in encrypted format 
 
+gather and present all available junior resourses and coding websites.A db of all available 
+
