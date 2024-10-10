@@ -3,7 +3,7 @@ yellow,жълто
 green,зелено
 blue,синьо
 purple,лилаво
-black,червено
+black,черно
 white,бяло
 orange,оранжево
 Russia,Русия
@@ -21,7 +21,7 @@ pen,химикал
 pencil,молив
 rubber,гума
 ruler,линия
-pencilcase,несесер
+pencil case,несесер
 finger,пръст
 puppet,кукла
 new,нов
@@ -78,12 +78,12 @@ boat,лодка
 car,кола
 kite,хвърчило
 sandpit,пясъчник
-seesaw,катерушка
+seesaw,люлка
 slide,пързалка
 swing,люлка
 circus,цирк
 head,глава
-shоes,обувки
+shoes,обувки
 shop,магазин
 eye,око
 ear,ухо
@@ -100,7 +100,7 @@ shirt,риза
 trousers,панталон
 socks,чорапи
 gloves,ръкавици
-hand,китка
+hand,ръка
 clock,часовник
 desk,бюро
 door,врата
@@ -110,15 +110,15 @@ twelve,дванадесет
 thirteen,тринадесет
 fourteen,четиринадесет
 fifteen,петнадесет
-sixteen,шеснадесет
-seventen,седенмадесет
+sixteen,шестнадесет
+seventeen,седемнадесет
 eighteen,осемнадесет
 nineteen,деветнадесет
 twenty,двадесет
 duck,патица
 banana,банан
 burger,бургер
-cake,кекс
+cake,кейк
 carrot,морков
 mango,манго
 onion,лук
@@ -126,7 +126,7 @@ pear,круша
 tomato,домат
 mother,майка
 father,баща
-icecrem,сладолед
+ice cream,сладолед
 coconut,кокос
 melon,пъпеш
 skirt,пола
@@ -138,18 +138,18 @@ bear,мечка
 camel,камила
 wolf,вълк
 crocodile,крокодил
-kagoroo,кенгуру
+kangaroo,кенгуру
 thirty,тридесет
-fourty,четиридесед
+forty,четиридесет
 fifty,петдесет
 sixty,шестдесет
 seventy,седемдесет
 eighty,осемдесет
 ninety,деветдесет
-one-hundred,сто
+one hundred,сто
 forest,гора
-Мonday,Понеделник
-Тuesday,Вторник
+Monday,Понеделник
+Tuesday,Вторник
 tongue,език
 Wednesday,Сряда
 Thursday,Четвъртък
@@ -181,40 +181,40 @@ cartoon,анимация
 garden,градина
 building,сграда
 flat,апартамент
-hоuse,къща
+house,къща
 park,парк
 restaurant,ресторант
 street,улица
 elf,елф
 candy,бонбон
 cane,бастун
-raindeer,северен елен
+reindeer,северен елен
 snowman,снежен човек
-christmas tree,
-North pole,Северен полюс
+christmas tree,коледно дърво
+North Pole,Северен полюс
 man,мъж
 woman,жена
-fire fighter,пожарникар
+firefighter,пожарникар
 key,ключ
 sun,слънце
 cloud,облак
 rain,дъжд
 snow,сняг
 wind,вятър
-beach,море
-sea,река
-momtain,планина
+beach,плаж
+sea,море
+mountain,планина
 boots,ботуши
 jumper,пуловер
 ice,лед
-skate,трик
+skate,кънка
 smile,усмивка
 bus,автобус
 lorry,камион
-truck,трактор
-motor bike,мотор
+truck,камион
+motorbike,мотор
 helicopter,хеликоптер
-plene,самолет
+plane,самолет
 train,влак
 traffic light,светофар
 left,ляво
@@ -224,61 +224,61 @@ pavement,тротоар
 shout,викам
 spring,пролет
 summer,лято
-autum,есен
+autumn,есен
 winter,зима
-seatbel,колан
+seatbelt,колан
 picnic,пикник
-plant,бера
-autsite,навън
-airpoart,летище
+plant,растение
+outside,навън
+airport,летище
 fly,летя
 holiday,ваканция
-sunglases,слънчеви очила
+sunglasses,слънчеви очила
 leaf,листо
 leaves,листа
-beans,бобови зърна
+beans,боб
 coconut,кокос
 grapes,грозде
 lemon,лимон
 watermelon,диня
-patato,картоф
-peas,леща
+potato,картоф
+peas,грах
 pepper,чушка
 bee,пчела
-seds,семена
-fruit,плодове
-vegetable,зеленчуци
+seeds,семена
+fruit,плод
+vegetables,зеленчуци
 feed,храня
-market,магазин
-livingroom,хол
+market,пазар
+living room,хол
 bookcase,библиотека
 sofa,диван
 shower,душ
 bathroom,баня
-diningroom,трапезария
-hall,шкаф
-kithen,кухня
+dining room,трапезария
+hall,антре
+kitchen,кухня
 asleep,заспал
-astronaut,астронафт
+astronaut,астронавт
 space,космос
 towel,кърпа
 wash,мия
-аquarium,аквариум
-art gallerry,художествена галерия
+aquarium,аквариум
+art gallery,художествена галерия
 bowling alley,боулинг писта
-canpsite,кампинг
-cencert,концерт
+campsite,кемпинг
+concert,концерт
 skate park,скейтборд парк
 theme park,увеселителен парк
-zoo,золгическа градина
+zoo,зоологическа градина
 guide,водач
-jungele,джунгла
+jungle,джунгла
 parrot,папагал
 cage,клетка
 ill,болен
 vet,ветеринар
-geraffe,жираф
-afternoon,следобет
+giraffe,жираф
+afternoon,следобед
 evening,вечер
 morning,сутрин
 rock,скала

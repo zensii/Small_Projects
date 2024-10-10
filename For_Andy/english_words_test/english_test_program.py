@@ -1,5 +1,9 @@
 import random
-add = ''
+
+from For_Andy.english_words_test.funcs.funcs import selector, select_player, get_name, get_game_type, add_word, \
+    collect_new_english_word, collect_new_bulgarian_word, check_spelling, get_words_dict, record_session, \
+    show_dictionary
+
 target_word = None
 end_game = False
 random_word = None
@@ -8,73 +12,59 @@ next_word = False
 total_translations = 0
 total_errors = 0
 wrong_words = []
+words_dict = get_words_dict()
 
-print('Здравей, кой ще играе днес? ')
-print('1: 👦')
-print('2: 👧')
-print('Избери "1" или "2"')
+print('Здравей отново, какво ще правим днес?')
 while True:
-    try:
-        sex = int(input('Избери играч:'))
-        if sex in (1, 2):
+    selection = selector()
+    if selection == '1':
+        sex, add = select_player()
+        user = get_name()
+        type_of_game = get_game_type(user, sex)
+        break
+    elif selection == '2':
+        counter = 0
+        while True:
+            new_english = collect_new_english_word()
+            english_check, bulgarian_check = check_spelling(new_english)
+            if english_check == 'not_found':
+                print("Check english word spelling: ")
+                continue
+            while True:
+                new_bulgarian = collect_new_bulgarian_word()
+                if new_bulgarian == bulgarian_check or counter == 1:
+                    final_check = input(f"Сигурен ли си, че искаш да добавиш: {english_check}:{new_bulgarian} в речника? ")
+                    if final_check.lower() in 'yesдаdaъес1':
+                        add_word(new_english, new_bulgarian)
+                        break
+                    else:
+                        continue
+                else:
+                    print("превода на български е некоректен. Моля провери.")
+                    print(f"може би трябва да е: {bulgarian_check}?")
+                    counter += 1
+                    continue
             break
-        else:
-            print('Трябва да избереш играч "1" или играч "2"')
-    except ValueError:
-        print('Избери си играч и напиши "1" или "2"')
+    elif selection == '3':
+        show_dictionary(words_dict)
 
-user = input('Как се казваш?: ')
-if sex == 2:
-    add = 'a'
-print()
-print(f'Здравей {user.capitalize()}. Нека проверим дали си знаеш думите по Английски.')
-print()
-print('Каво искаш да упражняваш този път?')
-print()
-print('1: превод от Английски към Български,')
-print('2: превод от Български към Английски')
-print('3: или и двата вида?')
-print()
+    else:
+        print('Bye bye...!')
+        exit()
+    print("\nА сега какво ще правим?")
 
-while True:
-    try:
-        type_of_game = int(input('Избирам...'))
-        if type_of_game in (1, 2, 3):
-            break
-        else:
-            print('Трябва да избереш какво искаш да тренираш и да въведеш "1","2" или "3"')
-    except ValueError:
-        print('Избери и напиши "1","2" или "3"')
-
-if type_of_game == 3:
-    print()
-    print(f'Ооо, чувстваш се смел{add} днес а?')
-
-print('Успех! Когато искаш да спреш просто въведи "стоп".')
-print()
 start = input('Натисни "Enter" за да стартираш играта.')
 
-
 #  ///////////////////////////////////////////////////////////////////////////////////////  # user selection
-words_dict = {}
-
-with open('dictionary.txt', 'r', encoding='utf-8') as file:
-    # Iterate over each line in the file
-    for line in file:
-        # Split each line into key and value using the colon as delimiter
-        key, value = line.strip().split(',')
-        # Add the key-value pair to the dictionary
-        words_dict[key.strip()] = value.strip()
 
 while not end_game:
-
     random_en_word = random.choice(list(words_dict.keys()))  # select random english word from dictionary
     random_bg_word = random.choice(list(words_dict.values()))  # select random bulgarian word from dictionary
 
-    if type_of_game == 1:
+    if type_of_game == '1':
         random_word = random_en_word
         translation = 'Български'
-    elif type_of_game == 2:
+    elif type_of_game == '2':
         random_word = random_bg_word
         translation = 'Английски'
     else:
@@ -87,17 +77,16 @@ while not end_game:
         else:
             random_word = random_bg_word
             translation = 'Английски'
-    print()
-    print('-------------------------------------------------------')
-    print()
+
+    print('\n-------------------------------------------------------\n')
     print(f'как се превежда "{random_word}" на {translation}?')
 
-    if type_of_game == 2 or (type_of_game == 3 and random_choice == 2):
+    if type_of_game == '2' or (type_of_game == '3' and random_choice == 2):
         for key, item in words_dict.items():
             if item == random_word:
                 target_word = key
 
-    elif type_of_game == 1 or (type_of_game == 3 and random_choice == 1):
+    elif type_of_game == '1' or (type_of_game == '3' and random_choice == 1):
         target_word = words_dict[random_en_word]
     tries = 0
     while True:
@@ -105,8 +94,8 @@ while not end_game:
         if tries < 2:
             user_input = input('Очаквам отговора ти:')
             if user_input == 'stop' or user_input == 'стоп':
-                print()
-                print('#############################################################')
+
+                print('\n#############################################################')
                 print(f'{user.capitalize()} ти преведе {total_translations} думи.')
                 print(f'Имаше и {total_errors} грешки.')
                 print(f'Думите, с които се затрудни бяха: {wrong_words}')
@@ -127,14 +116,14 @@ while not end_game:
                 print('Грешка!')
                 print('Помисли и опитай още веднъж.')
         else:
-            print()
-            print('******')
+            print('\n******')
             print(f'Не успя да се сетиш {user.capitalize()} 😵')
             print(f'Преводът на "{random_word.upper()}" e "{target_word.upper()}"')
             total_errors += 1
             wrong_words.append(random_word)
+
             break
-print()
-print('Успех с ученето на английския език!')
-print()
+
+print('\nУспех с ученето на английския език!\n')
 program_stop = input('Натисни "Enter за да затвориш програмата"')
+record_session(user, total_translations, total_errors, wrong_words)
