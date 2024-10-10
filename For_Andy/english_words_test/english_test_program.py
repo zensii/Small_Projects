@@ -2,7 +2,7 @@ import random
 
 from For_Andy.english_words_test.funcs.funcs import selector, select_player, get_name, get_game_type, add_word, \
     collect_new_english_word, collect_new_bulgarian_word, check_spelling, get_words_dict, record_session, \
-    show_dictionary
+    show_dictionary, api_translator
 
 target_word = None
 end_game = False
@@ -47,6 +47,8 @@ while True:
             break
     elif selection == '3':
         show_dictionary(words_dict)
+    elif selection == '4':
+        api_translator(input("напишете дума за превод: "), 'en')
 
     else:
         print('Bye bye...!')

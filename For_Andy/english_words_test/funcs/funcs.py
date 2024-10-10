@@ -1,14 +1,21 @@
 import datetime
-from For_Andy.english_words_test.dict_api import get_api_translation
+from For_Andy.english_words_test.dict_api import get_api_translation, get_full_call
 
 
 def selector():
 
-    print('1: Ще учим Английски!\n2: Искам да добавя нови думи.\n3: Покажи ми речника моля.\n4: Нищо, аз си знам думуте...')
+    print('1: Ще учим Английски!\n2: Искам да добавя нови думи.\n3: Покажи ми речника моля.\n'
+          '4: Включи онлайн речника моля.\n4: Нищо, аз си знам думуте...')
     print()
-    selection = input('Напиши избора си (1, 2, 3, 4): ')
+    selection = input('Напиши избора си (1, 2, 3, 4, 5): ')
 
     return selection
+
+
+def api_translator(word, lang):
+
+    return get_full_call(word, lang)
+
 
 
 def select_player() -> tuple[int, str]:

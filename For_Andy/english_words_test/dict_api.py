@@ -1,11 +1,12 @@
 from decouple import config
 import requests
+from bs4 import BeautifulSoup
 api_key = config('API_KEY')
 
 
-def get_api_translation(word: str) -> tuple[str, str]:
+def get_api_translation(word: str, lang='en') -> tuple[str, str]:
 
-    url = f"https://api.pons.com/v1/dictionary?q={word}&l=bgen&in=en"
+    url = f"https://api.pons.com/v1/dictionary?q={word}&l=bgen&in={lang}"
     headers = {
         'X-Secret': api_key
     }
@@ -19,18 +20,6 @@ def get_api_translation(word: str) -> tuple[str, str]:
 
         for dictionary in dictionaries:
 
-        #     arabs = dictionary['hits'][0]['roms'][0]['arabs']
-        #
-        #     for index, arab in enumerate(arabs):
-        #         print(index+1,':', arab['translations'][0]['target'].split()[0])
-        #         examples = arab['translations']
-        #
-        #         for example in examples:
-        #             cleantext_source = BeautifulSoup(example['source'], "lxml").text
-        #             cleantext = BeautifulSoup(example['target'], "lxml").text
-        #             print(cleantext_source)
-        #             print(cleantext,'\n')
-
             # get first translation only
             source = (dictionary['hits'][0]['roms'][0]['headword'])
             translation = (dictionary['hits'][0]['roms'][0]['arabs'][0]['translations'][0]['target'].split()[0])
@@ -38,6 +27,31 @@ def get_api_translation(word: str) -> tuple[str, str]:
             return source, translation
     else:
         return f'not_found', f'not_found'
+
+def get_full_call(word: str, lang):
+    url = f"https://api.pons.com/v1/dictionary?q={word}&l=bgen&in={lang}"
+    headers = {
+        'X-Secret': api_key
+    }
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+
+        translations = response.json()
+        for dictionary in translations:
+            arabs = dictionary['hits'][0]['roms'][0]['arabs']
+
+            for index, arab in enumerate(arabs):
+                print(index + 1, ':', arab['translations'][0]['target'].split()[0])
+                examples = arab['translations']
+
+                for example in examples:
+                    cleantext_source = BeautifulSoup(example['source'], "lxml").text
+                    cleantext = BeautifulSoup(example['target'], "lxml").text
+                    print(cleantext_source)
+                    print(cleantext, '\n')
+
+
+
 
 
 if __name__ == "__main__":
