@@ -5,7 +5,7 @@ api_key = config('API_KEY')
 
 def get_api_translation(word: str) -> tuple[str, str]:
 
-    url = f"https://api.pons.com/v1/dictionary?q={word}&l=bgen"
+    url = f"https://api.pons.com/v1/dictionary?q={word}&l=bgen&in=en"
     headers = {
         'X-Secret': api_key
     }

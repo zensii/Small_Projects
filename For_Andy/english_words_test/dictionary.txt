@@ -283,3 +283,5 @@ evening,вечер
 morning,сутрин
 rock,скала
 shell,мида
+love,любов
+laugh,смях

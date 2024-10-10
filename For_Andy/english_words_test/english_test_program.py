@@ -28,7 +28,7 @@ while True:
             new_english = collect_new_english_word()
             english_check, bulgarian_check = check_spelling(new_english)
             if english_check == 'not_found':
-                print("Check english word spelling: ")
+                print("Такава дума на английски не е намерена. Провери как е написана: ")
                 continue
             while True:
                 new_bulgarian = collect_new_bulgarian_word()

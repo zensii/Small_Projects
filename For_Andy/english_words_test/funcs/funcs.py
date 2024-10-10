@@ -1,4 +1,3 @@
-from typing import Tuple
 import datetime
 from For_Andy.english_words_test.dict_api import get_api_translation
 
@@ -35,7 +34,7 @@ def get_name() -> str:
 def show_dictionary(words_dict):
     for english_word, bulgarian_word in words_dict.items():
         print(f"{english_word} --> {bulgarian_word}")
-        print(f"\nВ речника ви има {len(words_dict)} думи.")
+    print(f"\nВ речника ви има {len(words_dict)} думи.")
 
 
 def get_game_type(user, sex) -> str:
@@ -98,8 +97,8 @@ def get_words_dict():
 
 def record_session(name, translated, errors, words):
     now = datetime.datetime.now()
-    with open(f'Session: {now}', 'w') as file:
-        file.write(f"Играч {name}:\nпреведени думи: {translated}\nСгрешени думи: {errors}\n{', '.join(words)}")
+    with open(f'Sessions', 'a') as file:
+        file.write(f"\nИграч: {name}\nДата: {now}\nпреведени думи: {translated}\nСгрешени думи: {errors}\n{', '.join(words)}")
 
 
 if __name__ == "__main__":
